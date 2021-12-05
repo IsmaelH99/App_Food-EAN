@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-
+import 'bootstrap/dist/css/bootstrap.css'
+import NavBar from './components/NavBar';
+import StockFiltrInput from './components/StockFiltrInput';
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <NavBar />
       </header>
+      <main>
+        <section className = "container">
+          <section className = "row">
+            <section className = "col-md-8">
+              <h1>Saisir le numéro de code barre</h1>
+              <hr />
+            </section>
+            <section className = "col-md-8">
+              <StockFiltrInput />
+            </section>
+          </section>
+        </section>
+      </main>
+
     </div>
   );
 }
