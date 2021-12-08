@@ -2,16 +2,17 @@
     display: grid;
     grid-template-columns: 230px 230px 230px 230px;
 }
-.nb-pro{
+.nbr-pro{
     font-size: 1rem;
     display: inline-block;
     position:absolute;
     margin-left: 10px;
 }
-.toto{
+.cart{
     min-height: 450px;
     position:relative;
-    margin-right: 50px;
+    margin-right: 100px;
+    margin-left: 100px;
     width: 210px;
 }
 .btn-supp{

@@ -2,6 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import NavBar from './components/NavBar';
 import StockFiltrInput from './components/StockFiltrInput';
+
 function App() {
   return (
     <div className="App">
@@ -15,7 +16,7 @@ function App() {
               <h1 className = "mt-3">Saisir le numéro de code barre</h1>
               <hr />
             </section>
-            <section className = "col-md-8">
+            <section className = "col-md-12">
               <StockFiltrInput />
             </section>
           </section>

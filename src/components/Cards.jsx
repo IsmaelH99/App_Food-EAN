@@ -16,7 +16,7 @@ cursor:pointer;
 `
 export default function CarBtn({nom,supprimer}){
     return (
-        <div className="card border-info mb-3 toto" >
+        <div className="card border-info mb-3 cart" >
             <div className="card-header">🔳 "{nom.code}"</div>
             <div className="card-body">
                 <ImgPro src= {nom.product.image_front_small_url} className="card-img-top" alt="..."/>

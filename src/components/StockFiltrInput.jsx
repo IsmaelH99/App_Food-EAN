@@ -2,6 +2,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import CarBtn from "./Cards";
 import productExist from "./ProductExist";
+
 export default function StockFiltrInput(){
     const [cartes, setCartes] = useState ([])
     const [input, setInput] = useState("");
