@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import CarBtn from "./Cards";
-
+import productExist from "./ProductExist";
 export default function StockFiltrInput(){
     const [cartes, setCartes] = useState ([])
     const [input, setInput] = useState("");
@@ -24,20 +24,39 @@ export default function StockFiltrInput(){
         let tmpRech = strRech.toLowerCase();
         let res = liste.filter(carte => {
             let lowerCarte = carte.product.generic_name_fr.toLowerCase();
+            let lowerCarte1 = carte.product.brands.toLowerCase();
+            let lowerCarte2 = carte.product.nutriscore_grade.toLowerCase();
+            let lowerCarte3 = carte.code.toLowerCase();
+
             if(lowerCarte.indexOf(tmpRech) > - 1) return carte;
+            if(lowerCarte1.indexOf(tmpRech) > - 1) return carte;
+            if(lowerCarte2.indexOf(tmpRech) > - 1) return carte;
+            if(lowerCarte3.indexOf(tmpRech) > - 1) return carte;
         });
         return(res)
     }
 
     function scan(input){
-        axios.get(`https://world.openfoodfacts.org/api/v0/product/${input}.json`).then(datas=>{
+        axios.get(`https://fr.openfoodfacts.org/api/v0/product/${input}.json`).then(datas=>{
             if(datas.status === 200 && datas.data.status === 1) {
-                let tmp = [...cartes]
-                tmp.push(datas.data)
-                setCartes(tmp)
-                setInput("")
+                setInput("");
             }
-            console.log(datas)
+            
+            if(datas.data.status === 0){
+                alert("Produit non trouvé");
+                setInput("")
+                return false;
+            }
+            
+            const product = datas.data;
+            if(productExist(product, cartes)){
+                alert("Produit déjà existant");
+                return false;
+            }
+            let tmp = [...cartes];
+                tmp.push(datas.data);
+                setCartes(tmp);
+                setInput("");
         })
     }
 
@@ -65,6 +84,15 @@ export default function StockFiltrInput(){
                     <input type="text" value = {rech} onChange={(e)=>{setRech(e.target.value)}} className="form-control" placeholder="Rechercher..." />
                     <button className="btn btn-outline-primary" type="button" id="button-addon2">Rechercher</button>
                 </div>
+            }
+
+            { cartes.length > 0 &&
+               <div  className = "mb-4 mt-3">
+                    <b>Nombre de Produits </b> 
+                    <span className="nb-pro badge rounded-pill bg-info text-dark">
+                        {cartes.length}
+                    </span>
+                </div> 
             }
             <div className="ligIma">{lignesImages}</div>
         </div>

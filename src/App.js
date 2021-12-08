@@ -12,7 +12,7 @@ function App() {
         <section className = "container">
           <section className = "row">
             <section className = "col-md-8">
-              <h1>Saisir le numéro de code barre</h1>
+              <h1 className = "mt-3">Saisir le numéro de code barre</h1>
               <hr />
             </section>
             <section className = "col-md-8">
